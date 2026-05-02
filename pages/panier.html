@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Garden - Your Basket</title>
+    <!-- Favicon: inline SVG rose emoji -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>">
+    <!-- Shared site-wide styles -->
+    <link rel="stylesheet" href="../css/rose-style.css">
+    <!-- Page-specific cart styles -->
+    <link rel="stylesheet" href="../css/panier.css">
+</head>
+<body>
+
+    <!--  Navigation Bar  -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <div class="flower-logo">
+                <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            </div>
+            ROSE GARDEN
+        </a>
+        <!-- "Cart" is marked active on this page -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="flower_bar.html">Flower Bar</a></li>
+            <li><a href="panier.html" class="active">Cart</a></li>
+            <li><a href="flowers.html">Flowers</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!-- Dark semi-transparent backdrop shown behind modal dialogs -->
+    <div class="overlay" id="overlay"></div>
+
+    <!--  Step 1 Modal: Order Details Form  -->
+    <!-- Shown when the user clicks "Confirm Order"; collects name, relation, and message -->
+    <div class="info-card" id="infoCard">
+        <h2 class="info-title">Complete Your <span>Order</span></h2>
+        <p class="info-subtitle">Add a personal touch to your bouquet</p>
+        <!-- Validation error banner; hidden by default, shown if fields are empty -->
+        <p class="info-error" id="infoError"><i class="fa-solid fa-circle-exclamation"></i> Please fill in all fields.</p>
+        <div class="info-group">
+            <label>Your Name</label>
+            <input type="text" id="infoName" placeholder="Enter your full name">
+        </div>
+        <div class="info-group">
+            <label>Relationship to Recipient</label>
+            <select id="infoRelation" aria-label="Relationship to recipient">
+                <option value="">Select relationship...</option>
+                <option>Friend</option>
+                <option>Partner</option>
+                <option>Family</option>
+                <option>Colleague</option>
+                <option>Other</option>
+            </select>
+        </div>
+        <div class="info-group">
+            <label>Personal Message</label>
+            <textarea id="infoMessage" rows="4" placeholder="Write a message for the recipient..."></textarea>
+        </div>
+        <div class="info-actions">
+            <button type="button" class="btn-back" onclick="closeInfo()">Cancel</button>
+            <button type="button" class="btn-checkout btn-place" onclick="placeOrder()">Place Order</button>
+        </div>
+    </div>
+
+    <!--  Step 2 Modal: Order Confirmation  -->
+    <!-- Shown after a successful order; cart is cleared at this point -->
+    <div class="order-card" id="orderCard">
+        <div class="order-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <h2 class="order-title">Order Confirmed!</h2>
+        <p class="order-msg">Thank you for your order. Your flowers are on their way!</p>
+        <button type="button" class="btn-checkout" onclick="closeOrder()">Back to Shop</button>
+    </div>
+
+    <!--  Main Cart Area  -->
+    <main class="cart-container">
+        <div class="page-intro">
+            <h1>Your <span>Basket</span></h1>
+        </div>
+
+        <!-- Empty state: shown when the cart has no items -->
+        <div id="empty-cart-msg">
+            <div class="empty-cart-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+            <h2 class="empty-cart-title">Your basket is empty</h2>
+            <p class="empty-cart-text">Time to add some floral magic!</p>
+            <a href="menu.html" class="empty-cart-link">Explore Menu →</a>
+        </div>
+
+        <!-- Cart table: shown when the cart has at least one item -->
+        <div id="cart-wrapper">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <!-- Rows are injected dynamically by loadCart() -->
+                    <tbody id="cart-table-body"></tbody>
+                </table>
+            </div>
+
+            <!-- Order summary: subtotal, fixed delivery fee, grand total -->
+            <div class="summary-box">
+                <div class="summary-row"><span>Subtotal:</span><span id="sub-total">0 DH</span></div>
+                <div class="summary-row"><span>Delivery Fee:</span><span>20 DH</span></div>
+                <div class="summary-row total-row"><span>Grand Total:</span><span id="grand-total">0 DH</span></div>
+                <!-- Opens the order details modal -->
+                <button type="button" class="btn-checkout" onclick="confirmOrder()">Confirm Order</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- Mobile nav toggle ---
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        burger.addEventListener('click', () => { navLinks.classList.toggle('active'); burger.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => { navLinks.classList.remove('active'); burger.classList.remove('active'); });
+        });
+
+        // --- Cart: read from localStorage and render the table ---
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('roseGardenCart')) || [];
+            const emptyBox   = document.getElementById('empty-cart-msg');
+            const cartWrapper = document.getElementById('cart-wrapper');
+            const tableBody  = document.getElementById('cart-table-body');
+
+            if (cart.length === 0) {
+                // Show the empty-state message and hide the table
+                emptyBox.style.display = 'block';
+                cartWrapper.style.display = 'none';
+            } else {
+                // Build the table rows and compute totals
+                emptyBox.style.display = 'none';
+                cartWrapper.style.display = 'block';
+                tableBody.innerHTML = '';
+                let subTotal = 0;
+
+                cart.forEach((item, index) => {
+                    let totalItem = item.price * item.quantity;
+                    subTotal += totalItem;
+                    tableBody.innerHTML += `
+                        <tr>
+                            <td style="font-weight:600; color:var(--dark);">${item.title}</td>
+                            <td>${item.price} DH</td>
+                            <!-- Quantity spinner: calls updateQty on change -->
+                            <td><input type="number" class="qty-input" value="${item.quantity}" min="1" onchange="updateQty(${index}, this.value)"></td>
+                            <td style="color:var(--deep-rose); font-weight:700;">${totalItem} DH</td>
+                            <td><button class="remove-btn" onclick="removeItem(${index})">Remove</button></td>
+                        </tr>
+                    `;
+                });
+                // Delivery fee is always 20 DH
+                document.getElementById('sub-total').innerText = subTotal + " DH";
+                document.getElementById('grand-total').innerText = (subTotal + 20) + " DH";
+            }
+        }
+
+        // Update the quantity of an item and persist to localStorage
+        function updateQty(index, qty) {
+            let cart = JSON.parse(localStorage.getItem('roseGardenCart'));
+            cart[index].quantity = parseInt(qty);
+            localStorage.setItem('roseGardenCart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Remove an item by index and re-render
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('roseGardenCart'));
+            cart.splice(index, 1);
+            localStorage.setItem('roseGardenCart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Show the overlay + order-details form modal
+        function confirmOrder() {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('infoCard').style.display = 'block';
+        }
+
+        // Close the order-details form without placing the order
+        function closeInfo() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('infoCard').style.display = 'none';
+            document.getElementById('infoError').style.display = 'none';
+        }
+
+        // Validate the form, clear the cart, and show the success card
+        function placeOrder() {
+            const name     = document.getElementById('infoName').value.trim();
+            const relation = document.getElementById('infoRelation').value;
+            const message  = document.getElementById('infoMessage').value.trim();
+            const error    = document.getElementById('infoError');
+
+            // Require all three fields before proceeding
+            if (!name || !relation || !message) {
+                error.style.display = 'flex';
+                return;
+            }
+
+            error.style.display = 'none';
+            document.getElementById('infoCard').style.display = 'none';
+
+            // Clear the cart from localStorage after a successful order
+            localStorage.removeItem('roseGardenCart');
+            document.getElementById('orderCard').style.display = 'block';
+
+            // Reset form fields for the next potential use
+            document.getElementById('infoName').value    = '';
+            document.getElementById('infoRelation').value = '';
+            document.getElementById('infoMessage').value = '';
+        }
+
+        // Close the success card and reload the (now empty) cart
+        function closeOrder() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('orderCard').style.display = 'none';
+            loadCart();
+        }
+
+        // Initialize the cart view on page load
+        window.onload = loadCart;
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Garden - Our Flowers</title>
+    <!-- Favicon: inline SVG rose emoji -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>">
+    <!-- Shared site-wide styles -->
+    <link rel="stylesheet" href="../css/rose-style.css">
+    <!-- Page-specific flip-card styles -->
+    <link rel="stylesheet" href="../css/flowers.css">
+</head>
+<body>
+
+    <!--  Navigation Bar  -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <div class="flower-logo">
+                <div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div>
+            </div>
+            ROSE GARDEN
+        </a>
+        <!-- "Flowers" is marked active on this page -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="flower_bar.html">Flower Bar</a></li>
+            <li><a href="panier.html">Cart</a></li>
+            <li><a href="flowers.html" class="active">Flowers</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="burger" id="burger"><span></span><span></span><span></span></div>
+    </nav>
+
+    <!--  Page Header  -->
+    <div class="page-intro">
+        <h1>Our <span>Flowers</span></h1>
+        <p class="subtitle">Hover over a flower to discover its secrets</p>
+    </div>
+
+    <!--  Flip-Card Gallery  -->
+    <!-- Each card shows an image on the front and descriptive text on the back.
+         On desktop: hover triggers the flip. On touch devices: tap toggles the .flipped class via JS. -->
+    <div class="container">
+
+        <!-- Jasmin -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/48.jpeg" alt="Jasmin"></div>
+                <div class="flip-card-back">
+                    <h2>Jasmin</h2>
+                    <p>One of the most precious flowers in luxury perfumery. Its sweet fragrance is released particularly at night.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tulip -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/44.jpeg" alt="Tulip"></div>
+                <div class="flip-card-back">
+                    <h2>Tulip</h2>
+                    <p>The Tulip is the ultimate symbol of spring. Originally from the steppes of Central Asia, it embodies elegance and the perfect declaration of love. It blooms between March and May and exists in almost every imaginable color. The Netherlands is the world's largest producer, with entire fields transforming into breathtaking colorful landscapes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rose -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/47.jpeg" alt="Orchid"></div>
+                <div class="flip-card-back">
+                    <h2>Rose</h2>
+                    <p>The Rose is considered the queen of all flowers. It universally symbolizes love, passion and beauty. With more than 300 species and thousands of varieties, it blooms throughout the year and fills gardens with its enchanting fragrance. It thrives in full sunlight and can reach up to 3 meters in height depending on the variety.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sunflower -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/49.jpeg" alt="Orchid"></div>
+                <div class="flip-card-back">
+                    <h2>sunflowe</h2>
+                    <p>The Sunflower is a joyful and radiant flower that literally follows the sun in its daily course, a fascinating phenomenon known as heliotropism. Native to North America, it symbolizes adoration, vitality and happiness. It blooms in the height of summer and can exceed 3 meters in height, forming luminous natural walls under the bright sun.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lily -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/50.jpeg" alt="Orchid"></div>
+                <div class="flip-card-back">
+                    <h2>Lily</h2>
+                    <p>The Lily is the flower of purity and nobility. Historically linked to French royalty and the Virgin Mary, it captivates with its powerful yet delicate fragrance, highly prized in luxury perfumery. It blooms in summer and can reach 1.5 meters in height, offering a majestic presence in any sunny garden.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gerbera -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/45.jpeg" alt="Orchid"></div>
+                <div class="flip-card-back">
+                    <h2>Gerber</h2>
+                    <p>The Gerbera is a cheerful and vibrant flower, famous for its large, bold blooms and wide variety of colors. Often used to express innocence and cheerfulness, it is the perfect flower to brighten any room. It is highly valued for its ability to last a long time after being cut, making it a favorite for bouquets. Gerberas thrive in the sun and represent pure happiness and positivity</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orchid -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/51.jpeg" alt="Orchid"></div>
+                <div class="flip-card-back">
+                    <h2>Orchid</h2>
+                    <p>The Orchid is the most diverse flower in the plant kingdom, with more than 28,000 recorded species found all around the world. It symbolizes luxury, rare beauty and refined love. Present on every continent, it adapts to a wide variety of environments and blooms throughout the year, preferring soft and indirect light.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daisy -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><img src="../images/46.jpeg" alt="Rose"></div>
+                <div class="flip-card-back">
+                    <h2>Diasy</h2>
+                    <p>The Daisy is the flower of innocence and simplicity. Famous for the popular game "he loves me, he loves me not", it grows naturally in meadows and wild gardens. It blooms from spring through the heart of summer and easily withstands outdoor conditions, bringing a fresh and spontaneous touch to any green space.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--  Footer  -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Rose Garden</h3>
+                <p>Your favorite flower boutique in Marrakech. Premium quality and elegance in every bouquet.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Guéliz, Marrakech, Maroc</p>
+                <p><i class="fa-solid fa-phone"></i> +212 600 000 000</p>
+                <p><i class="fa-solid fa-envelope"></i> contact@rosegarden.ma</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon - Sat: 09:00 - 20:00</p>
+                <p>Sun: 09:00 - 13:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rose Garden Marrakech. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile nav toggle ---
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        burger.addEventListener('click', () => { navLinks.classList.toggle('active'); burger.classList.toggle('active'); });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => { navLinks.classList.remove('active'); burger.classList.remove('active'); });
+        });
+
+        // Tap-to-flip for touch devices (hover doesn't work reliably on mobile)
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', () => card.classList.toggle('flipped'));
+        });
+    </script>
+</body>
+</html>

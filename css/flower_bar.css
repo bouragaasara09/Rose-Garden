@@ -1,0 +1,315 @@
+/* flower_bar.css Flower Bar page styles Applies to: pages/flower_bar.html */
+/* Page background and navbar offset */
+body {
+    background: var(--bg-page);
+    color: var(--dark);
+    padding-top: 80px;
+}
+
+/* PAGE HEADER */
+.page-header {
+    text-align: center;
+    margin: 40px 0 10px;
+    padding: 0 5%;
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--dark);
+}
+
+.page-header h1 span {
+    color: var(--deep-rose);
+}
+
+.page-header p {
+    color: #888;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+/* MAIN TWO-COLUMN LAYOUT */
+/* Left: flower selection grid (3 fr). Right: bouquet sidebar (1 fr). */
+.main-container {
+    max-width: 1300px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+    padding: 0 5%;
+    animation: fadeInPage 0.8s ease-out;
+}
+
+/* Entrance animation */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FLOWER SELECTION GRID */
+/* Auto-fills columns; each card is at least 180 px wide */
+.flower-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* Individual flower card */
+.flower-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid var(--soft-pink);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.flower-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 16px 35px rgba(214, 51, 132, 0.13);
+    border-color: var(--deep-rose);
+}
+
+.flower-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease;
+}
+
+/* Slight zoom on hover for the flower image */
+.flower-card:hover img {
+    transform: scale(1.07);
+}
+
+.flower-card h4 {
+    margin: 10px 0 5px;
+    font-family: 'Playfair Display';
+    font-size: 1.1rem;
+}
+
+/* BOUQUET SIDEBAR */
+/* Sticky so it stays visible while scrolling the flower grid */
+.sidebar {
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar h2 {
+    font-family: 'Playfair Display';
+    margin-top: 0;
+    color: var(--deep-rose);
+}
+
+/* Quantity number input in each flower card */
+.qty-input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.qty-input:focus {
+    border-color: var(--deep-rose);
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
+/* "Add" button on each flower card */
+.btn-add-item {
+    background: var(--dark-blue);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-add-item:hover {
+    background: var(--deep-rose);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(214, 51, 132, 0.25);
+}
+
+/* "Add To Cart" button in the sidebar */
+.btn-order {
+    width: 100%;
+    padding: 15px;
+    background: var(--deep-rose);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-order:hover {
+    background: #b02070;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(214, 51, 132, 0.35);
+}
+
+/* CUSTOM ALERT MODAL */
+/* Replaces the native browser alert() with a branded dialog */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    /* frosted-glass background */
+}
+
+.modal-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    animation: popUp 0.3s ease-out;
+}
+
+/* Pop-in scale animation for the modal card */
+@keyframes popUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-card h3 {
+    font-family: 'Playfair Display';
+    color: var(--deep-rose);
+    margin-bottom: 10px;
+}
+
+.modal-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.modal-btn {
+    background: var(--deep-rose);
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.modal-btn:hover {
+    background: #b02070;
+    transform: translateY(-2px);
+}
+
+/* SIDEBAR HELPERS */
+.selection-info {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.sidebar-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.total-amount {
+    color: var(--deep-rose);
+}
+
+.bouquet-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.bouquet-name-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin: 8px 0 15px;
+    outline: none;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bouquet-name-input:focus {
+    border-color: var(--deep-rose);
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+
+    /* Single-column layout on tablet/mobile */
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Two-column flower grid on phones */
+    .flower-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .flower-card img {
+        height: 120px;
+    }
+
+    .main-container {
+        padding: 0 4%;
+        margin-top: 100px;
+    }
+}

@@ -1,0 +1,204 @@
+/* menu.css Menu page styles Applies to: pages/menu.html */
+/* Page background and navbar offset */
+body {
+    background: #fff5f8;
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+/* Apply entrance animations to the header and product grid */
+.page-header,
+.products-grid {
+    animation: fadeInPage 0.6s ease-out forwards;
+}
+
+/* Entrance keyframe */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FLOATING CART BUTTON */
+/* Fixed bottom-right pill that shows a live item-count badge */
+.floating-cart {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 65px;
+    height: 65px;
+    background: #d63384;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(214, 51, 132, 0.3);
+    z-index: 9999;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: 0.4s;
+    will-change: transform;
+    /* hint to browser for smooth animation */
+}
+
+.floating-cart:hover {
+    transform: scale(1.1);
+    background: #833d5f;
+}
+
+/* Numeric badge overlaid on the cart icon */
+#cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #833d5f;
+    color: white;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+/* PAGE HEADER */
+.page-header {
+    text-align: center;
+    margin: 60px 0 40px;
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--dark);
+}
+
+.page-header h1 span {
+    color: var(--deep-rose);
+}
+
+.page-header p {
+    color: #888;
+    font-style: italic;
+}
+
+/* PRODUCT GRID */
+/* Responsive auto-fit grid: cards never shrink below 280 px wide */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 8% 100px;
+}
+
+/* Individual product card */
+.product-card {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.4s;
+    border: 1px solid #eee;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: 280px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    color: var(--deep-rose);
+    font-size: 1.2rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* "Add to Cart" button */
+.btn-add {
+    background: var(--deep-rose);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.btn-add:hover {
+    background: #833d5f;
+}
+
+/* ADD-TO-CART NOTIFICATION */
+/* Small pill that floats upward from the click position and fades out */
+.notif {
+    position: absolute;
+    background: var(--deep-rose);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    pointer-events: none;
+    animation: fly 1s forwards;
+    z-index: 5000;
+}
+
+@keyframes fly {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -80px);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+        padding: 0 5% 80px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .floating-cart {
+        right: 15px;
+        bottom: 15px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.2rem;
+    }
+}

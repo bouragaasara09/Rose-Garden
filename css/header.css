@@ -1,0 +1,42 @@
+/* header.css Legacy / alternative navbar styles Note: the main navbar is now defined in rose-style.css. This file provides a simpler fallback used during early development. */
+/* Basic body reset */
+body {
+    font-family: Arial;
+    margin: 0;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand logo link */
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d63384;
+    text-decoration: none;
+}
+
+/* Navigation link list */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Highlight hovered or active links with the brand colour */
+.nav-links a:hover,
+.nav-links .active {
+    color: #d63384;
+}

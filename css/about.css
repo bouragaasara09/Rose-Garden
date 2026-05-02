@@ -1,0 +1,184 @@
+/* about.css About page styles Applies to: pages/about.html */
+/* Offset body for the fixed navbar */
+body {
+    overflow-x: hidden;
+    padding-top: 70px;
+}
+
+/* Apply the fade-in entrance animation to the hero and content sections */
+.about-hero,
+.about-content {
+    animation: fadeInPage 0.8s ease-out forwards;
+}
+
+/* Entrance keyframe: fades in while sliding up */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HERO BANNER */
+/* Full-width image banner with a brand-colour tinted overlay */
+.about-hero {
+    background: linear-gradient(rgba(214, 51, 132, 0.1), rgba(214, 51, 132, 0.1)), url('https://images.unsplash.com/photo-1519306110291-47759e921d74?autoformat&fitcrop&w1350&q80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-hero h1 {
+    font-family: 'Playfair Display';
+    font-size: 3.5rem;
+    color: var(--dark);
+    font-weight: 900;
+}
+
+.about-hero h1 span {
+    color: var(--deep-rose);
+}
+
+/* BRAND STORY SECTION */
+/* Two-column layout: text (left) + decorative image (right) */
+.about-content {
+    padding: 80px 10%;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    font-family: 'Playfair Display';
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Decorative image with a clipped teardrop shape */
+.about-image {
+    flex: 1;
+}
+
+.image-box {
+    width: 100%;
+    height: 450px;
+    border-radius: 50% 50% 0 50%;
+    overflow: hidden;
+    box-shadow: 20px 20px 0px var(--soft-pink);
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* VALUE CARDS SECTION */
+/* Pink background strip with a three-column card grid */
+.values {
+    padding: 80px 10%;
+    background: #fff5f8;
+    text-align: center;
+}
+
+.values h2 {
+    font-family: 'Playfair Display';
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Individual value card: lifts on hover */
+.value-card {
+    padding: 40px 20px;
+    border-radius: 25px;
+    background: white;
+    transition: 0.3s;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+}
+
+.value-card i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+    color: var(--deep-rose);
+}
+
+.value-card h3 {
+    color: var(--deep-rose);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.value-card p {
+    color: #777;
+    font-size: 0.95rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    /* Stack story section vertically on small screens */
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 5%;
+    }
+
+    /* Single-column value cards */
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .image-box {
+        height: 350px;
+        width: 350px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 430px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .image-box {
+        width: 100%;
+        height: 300px;
+    }
+}

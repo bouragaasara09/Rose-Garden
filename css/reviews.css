@@ -1,0 +1,437 @@
+/* reviews.css Reviews page styles Applies to: pages/reviews.html */
+/* Page background and navbar offset */
+body {
+    background-color: var(--bg-color);
+    padding-top: 80px;
+    overflow-x: hidden;
+}
+
+/* PAGE HEADER */
+.page-header {
+    text-align: center;
+    padding: 50px 5% 30px;
+    animation: fadeInDown 0.7s ease both;
+}
+
+.page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--dark);
+}
+
+.page-header h1 span {
+    color: var(--deep-rose);
+}
+
+.page-header p {
+    color: #888;
+    font-style: italic;
+    margin-top: 10px;
+    font-size: 1.05rem;
+}
+
+/* MAIN LAYOUT */
+/* Side-by-side: review form (left, sticky) + reviews grid (right) */
+.reviews-wrapper {
+    display: flex;
+    gap: 40px;
+    padding: 20px 8% 80px;
+    align-items: flex-start;
+}
+
+/* REVIEW SUBMISSION FORM */
+/* Sticky so the form stays visible while the user scrolls through reviews */
+.form-card {
+    flex: 1;
+    position: sticky;
+    top: 100px;
+    background: white;
+    padding: 45px;
+    border-radius: 35px;
+    box-shadow: 0 15px 50px rgba(214, 51, 132, 0.08);
+    border: 1px solid var(--soft-pink);
+    animation: fadeInLeft 0.7s ease both;
+}
+
+.form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--dark);
+    margin-bottom: 25px;
+}
+
+.form-title span {
+    color: var(--deep-rose);
+}
+
+/* Validation error banner inside the form */
+.error-msg {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    color: #e53e3e;
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+}
+
+/* Form field groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background: #fafafa;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dark);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+/* Highlight focused fields with the brand colour */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--deep-rose);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
+/* Submit button */
+.btn-submit {
+    width: 100%;
+    background: var(--deep-rose);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 5px;
+}
+
+.btn-submit:hover {
+    background: #b02070;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(214, 51, 132, 0.3);
+}
+
+/* REVIEWS DISPLAY SECTION */
+.reviews-section {
+    flex: 1.6;
+    animation: fadeInRight 0.7s ease both;
+}
+
+/* Two-column grid of review cards */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+/* REVIEW CARD */
+.review-card {
+    background: white;
+    padding: 28px;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--soft-pink);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    animation: fadeInCard 0.5s ease both;
+}
+
+.review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(214, 51, 132, 0.15);
+    border-color: var(--deep-rose);
+}
+
+/* Scale up stars on card hover */
+.review-card:hover .review-stars {
+    transform: scale(1.12);
+}
+
+.review-stars {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Avatar fills with brand colour on hover */
+.review-card:hover .review-avatar {
+    background: var(--deep-rose);
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Staggered entrance delays for the four pre-loaded review cards */
+.reviews-grid .review-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.reviews-grid .review-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.reviews-grid .review-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.reviews-grid .review-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Newly submitted reviews slide in from the left */
+.review-card.new-card {
+    animation: slideInCard 0.45s ease both;
+}
+
+.review-stars {
+    color: #ffc107;
+    margin-bottom: 14px;
+    font-size: 1rem;
+}
+
+.review-quote {
+    color: #555;
+    font-style: italic;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Reviewer profile row at the bottom of each card */
+.review-profile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--soft-pink);
+}
+
+/* Circular avatar showing the first letter of the reviewer's name */
+.review-avatar {
+    width: 46px;
+    height: 46px;
+    background: var(--soft-pink);
+    color: var(--deep-rose);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.review-profile strong {
+    display: block;
+    color: var(--dark);
+    font-size: 0.95rem;
+}
+
+.review-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #aaa;
+    font-size: 0.8rem;
+    margin-top: 3px;
+}
+
+.review-location i {
+    font-size: 0.7rem;
+    color: var(--deep-rose);
+}
+
+/* SUCCESS MODAL */
+/* Shown after a review is submitted */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    /* frosted-glass backdrop */
+    z-index: 3000;
+}
+
+.success-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 50px 40px;
+    border-radius: 35px;
+    text-align: center;
+    z-index: 3001;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.success-icon {
+    font-size: 64px;
+    color: #22c55e;
+    margin-bottom: 12px;
+}
+
+.success-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--deep-rose);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: #777;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.success-card .btn-submit {
+    max-width: 180px;
+    margin: 0 auto;
+}
+
+/* KEYFRAME DEFINITIONS */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInCard {
+    from {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.75);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+
+    /* Single-column reviews grid on narrow screens */
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+
+    /* Stack form above reviews on mobile */
+    .reviews-wrapper {
+        flex-direction: column;
+        padding: 20px 5% 60px;
+    }
+
+    .form-card {
+        position: static;
+        width: 100%;
+    }
+
+    .page-header h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .form-card {
+        padding: 30px 22px;
+    }
+
+    .success-card {
+        padding: 40px 25px;
+    }
+}

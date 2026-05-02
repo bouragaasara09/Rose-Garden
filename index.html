@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rose Garden - Home</title>
+    <!-- Favicon: inline SVG with a rose emoji -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>"
+    />
+    <!-- Shared site-wide styles -->
+    <link rel="stylesheet" href="css/rose-style.css" />
+    <!-- Page-specific styles for the homepage -->
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <!--  Navigation Bar  -->
+    <nav class="navbar">
+      <!-- Logo: CSS flower made of four petals + brand name -->
+      <a href="index.html" class="logo">
+        <div class="flower-logo">
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+          <div class="petal"></div>
+        </div>
+        ROSE GARDEN
+      </a>
+
+      <!-- Main navigation links; toggled by the burger button on mobile -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="pages/about.html">About us</a></li>
+        <li><a href="pages/menu.html">Menu</a></li>
+        <li><a href="pages/flower_bar.html">Flower Bar</a></li>
+        <li><a href="pages/panier.html">Cart</a></li>
+        <li><a href="pages/flowers.html">Flowers</a></li>
+        <li><a href="pages/reviews.html">Reviews</a></li>
+        <li><a href="pages/contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Hamburger icon (three spans = three lines); toggled via JS -->
+      <div class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <!--  Hero Slider  -->
+    <!-- Each .slide contains a text block and an image; only one is visible at a time -->
+    <div class="slider-container">
+      <!-- Slide 1: About -->
+      <div class="slide active">
+        <div class="slide-content">
+          <h2>
+            Welcome to<br /><span style="color: var(--deep-rose)"
+              >Rose Garden</span
+            >
+          </h2>
+          <p>
+            We are a family-owned flower boutique dedicated to spreading joy
+            through nature's beauty since 2010.
+          </p>
+          <a href="pages/about.html" class="btn-shop">Learn Our Story →</a>
+        </div>
+        <div class="slide-image">
+          <img src="images/9.jpeg" alt="About Us" />
+        </div>
+      </div>
+
+      <!-- Slide 2: Menu -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2>
+            Our Delicious<br /><span style="color: var(--deep-rose)"
+              >Flower Menu</span
+            >
+          </h2>
+          <p>
+            Check out our full collection of pre-designed bouquets and floral
+            arrangements.
+          </p>
+          <a href="pages/menu.html" class="btn-shop">View Menu →</a>
+        </div>
+        <div class="slide-image">
+          <img src="images/5.jpeg" alt="Menu" />
+        </div>
+      </div>
+
+      <!-- Slide 3: Flower Bar -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2>
+            Creative<br /><span style="color: var(--deep-rose)"
+              >Flower Bar</span
+            >
+          </h2>
+          <p>
+            Pick your own stems and create a unique bouquet that reflects your
+            style.
+          </p>
+          <a href="pages/flower_bar.html" class="btn-shop">Design Yours →</a>
+        </div>
+        <div class="slide-image">
+          <img src="images/1.jpeg" alt="Flower Bar" />
+        </div>
+      </div>
+
+      <!-- Slide 4: Flowers Collection -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2>
+            Explore Our<br /><span style="color: var(--deep-rose)"
+              >Flowers Collection</span
+            >
+          </h2>
+          <p>
+            Discover our wide variety of premium flowers imported daily for
+            maximum freshness.
+          </p>
+          <a href="pages/flowers.html" class="btn-shop">See Collection →</a>
+        </div>
+        <div class="slide-image">
+          <img src="images/4.jpeg" alt="Flowers" />
+        </div>
+      </div>
+
+      <!-- Slide 5: Reviews -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2>
+            What Our<br /><span style="color: var(--deep-rose)"
+              >Clients Say</span
+            >
+          </h2>
+          <p>
+            "The most beautiful and fresh roses I have ever ordered in Morocco!
+            Perfect service."
+          </p>
+          <a href="pages/reviews.html" class="btn-shop">Read Reviews →</a>
+        </div>
+        <div class="slide-image">
+          <img src="images/3.jpeg" alt="Reviews" />
+        </div>
+      </div>
+
+      <!-- Slide 6: Contact -->
+      <div class="slide">
+        <div class="slide-content">
+          <h2>
+            Get in<br /><span style="color: var(--deep-rose)"
+              >Touch With Us</span
+            >
+          </h2>
+          <p>
+            Have questions or need a custom order? Our floral experts are here
+            to help you.
+          </p>
+          <a href="pages/contact.html" class="btn-shop">Contact Now →</a>
+        </div>
+        <div class="slide-image">
+          <img src="images/6.jpeg" alt="Contact" />
+        </div>
+      </div>
+
+      <!-- Slider controls: previous/next arrows and dot indicators -->
+      <button
+        class="arrow prev"
+        onclick="manualChange(-1)"
+        aria-label="Previous slide"
+      >
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button
+        class="arrow next"
+        onclick="manualChange(1)"
+        aria-label="Next slide"
+      >
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+      <!-- Dots are generated dynamically by JS below -->
+      <div class="dots" id="dotsContainer"></div>
+    </div>
+
+    <!--  Footer  -->
+    <footer>
+      <div class="footer-container">
+        <!-- Brand blurb -->
+        <div class="footer-section">
+          <h3>Rose Garden</h3>
+          <p>
+            Your favorite flower boutique in Marrakech. Premium quality and
+            elegance in every bouquet.
+          </p>
+        </div>
+        <!-- Contact details -->
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <p>
+            <i class="fa-solid fa-location-dot"></i> Guéliz, Marrakech, Maroc
+          </p>
+          <p><i class="fa-solid fa-phone"></i> +212 600 000 000</p>
+          <p><i class="fa-solid fa-envelope"></i> contact@rosegarden.ma</p>
+        </div>
+        <!-- Opening hours -->
+        <div class="footer-section">
+          <h3>Hours</h3>
+          <p>Mon - Sat: 09:00 - 20:00</p>
+          <p>Sun: 09:00 - 13:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Rose Garden Marrakech. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // --- Mobile nav toggle ---
+      const burger = document.getElementById("burger");
+      const navLinks = document.getElementById("navLinks");
+
+      // Toggle the slide-in menu and animate the burger icon
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        burger.classList.toggle("active");
+      });
+
+      // Close the menu when any nav link is clicked (single-page feel)
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("active");
+          burger.classList.remove("active");
+        });
+      });
+
+      // --- Slider ---
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slide");
+      const dotsContainer = document.getElementById("dotsContainer");
+
+      // Create one dot per slide and wire up click-to-jump navigation
+      slides.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.classList.add("dot");
+        if (i === 0) dot.classList.add("active"); // first dot starts active
+        dot.addEventListener("click", () => {
+          resetTimer();
+          goToSlide(i);
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      const dots = document.querySelectorAll(".dot");
+
+      // Apply the active class to the current slide and its dot
+      function updateSlider() {
+        slides.forEach((s) => s.classList.remove("active"));
+        dots.forEach((d) => d.classList.remove("active"));
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].classList.add("active");
+      }
+
+      // Move by +1 (next) or -1 (prev), wrapping around
+      function changeSlide(direction) {
+        currentSlide =
+          (currentSlide + direction + slides.length) % slides.length;
+        updateSlider();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+      }
+
+      // Auto-advance every 5 seconds; reset the timer on manual interaction
+      let slideInterval = setInterval(() => changeSlide(1), 5000);
+      function resetTimer() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(() => changeSlide(1), 5000);
+      }
+      function manualChange(direction) {
+        resetTimer();
+        changeSlide(direction);
+      }
+    </script>
+
+    <!-- Shared site-wide scripts (theme switcher, Font Awesome, etc.) -->
+    <script src="js/rose-script.js"></script>
+  </body>
+</html>

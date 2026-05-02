@@ -1,0 +1,276 @@
+/* rose-style.css Shared site-wide styles Applies to: every page (navbar, footer, CSS variables, reset) */
+/* Load Font Awesome icons from CDN */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+/* --- CSS CUSTOM PROPERTIES (design tokens) --- */
+:root {
+    --deep-rose: #d63384;
+    /* primary brand colour */
+    --soft-pink: #fce4ec;
+    /* light accent / backgrounds */
+    --bg-color: #fff5f8;
+    /* default page background */
+    --bg-page: #fff5f8;
+    --pure-white: #ffffff;
+    --dark-blue: #d63384;
+    /* alias used on some pages */
+    --dark: #333;
+    /* default body text */
+}
+
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* NAVIGATION BAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    background: white;
+    /* Fixed at the top so it stays visible while scrolling */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Brand logo: serif font + icon, links to the homepage */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--deep-rose);
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* ANIMATED FLOWER LOGO */
+.flower-logo {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Each petal is a rotated teardrop shape */
+.petal {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: var(--deep-rose);
+    border-radius: 50% 50% 0 50%;
+    opacity: 0.85;
+    transition: 0.4s;
+}
+
+/* Petals are evenly spaced at 90° intervals around the centre */
+.petal:nth-child(1) {
+    transform: rotate(0deg) translateY(-7px);
+}
+
+.petal:nth-child(2) {
+    transform: rotate(90deg) translateY(-7px);
+}
+
+.petal:nth-child(3) {
+    transform: rotate(180deg) translateY(-7px);
+}
+
+.petal:nth-child(4) {
+    transform: rotate(270deg) translateY(-7px);
+}
+
+/* Hover: spin and scale the whole flower */
+.logo:hover .flower-logo {
+    transform: rotate(45deg) scale(1.1);
+}
+
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    position: relative;
+    transition: 0.3s;
+    padding: 5px 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--deep-rose);
+}
+
+/* Animated underline that expands from left on hover/active */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--deep-rose);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* MOBILE BURGER MENU */
+/* Hidden on desktop; appears below 1060 px (see media query) */
+.burger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 2000;
+}
+
+.burger span {
+    width: 28px;
+    height: 3px;
+    background: var(--deep-rose);
+    border-radius: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animate the three lines into an X when the menu is open */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 8px);
+}
+
+.burger.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-10px);
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -8px);
+}
+
+/* FOOTER */
+footer {
+    background: #8d3a61;
+    color: white;
+    padding: 60px 10% 40px;
+    margin-top: 100px;
+    width: 100%;
+    position: relative;
+}
+
+/* Three-column flex layout for the footer sections */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-section h3 {
+    font-family: 'Playfair Display';
+    color: var(--soft-pink);
+    margin-bottom: 20px;
+}
+
+.footer-section p,
+.footer-section li {
+    font-size: 0.9rem;
+    color: #bbb;
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+.footer-section a {
+    color: #2d2929;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    color: var(--deep-rose);
+}
+
+/* Copyright bar at the bottom of the footer */
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #080808;
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: rgb(19, 17, 17);
+}
+
+/* RESPONSIVE: mobile (< 1060px) */
+@media (max-width: 1060px) {
+
+    /* Show the burger icon */
+    .burger {
+        display: flex;
+    }
+
+    /* Slide-in drawer from the right edge */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        /* hidden off-screen by default */
+        width: 260px;
+        height: 100vh;
+        background: white;
+        padding: 80px 30px 30px;
+        gap: 8px;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1500;
+        overflow-y: auto;
+    }
+
+    /* Slide in when .active is toggled by JS */
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        border-bottom: 1px solid #fce4ec;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+        padding: 10px 0;
+        display: block;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+}

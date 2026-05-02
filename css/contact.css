@@ -1,0 +1,235 @@
+/* contact.css Contact page styles Applies to: pages/contact.html */
+/* Subtle gradient background + navbar offset */
+body {
+    background: linear-gradient(135deg, #ffffff 0%, var(--bg-color) 100%);
+    color: var(--dark);
+    padding-top: 110px;
+    overflow-x: hidden;
+}
+
+/* MAIN LAYOUT */
+/* Two-column flex: contact info (left) + contact form (right) */
+.contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 10%;
+    min-height: calc(100vh - 110px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Entrance animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* CONTACT INFO PANEL */
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.contact-info h1 span {
+    color: var(--deep-rose);
+}
+
+/* Individual contact detail row (icon + text) */
+.detail {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.detail i {
+    font-size: 1.3rem;
+    color: var(--deep-rose);
+    width: 20px;
+    text-align: center;
+}
+
+/* Response-time notice */
+.contact-note {
+    margin-top: 25px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* CONTACT FORM PANEL */
+.contact-form {
+    flex: 1;
+    background: white;
+    padding: 45px;
+    border-radius: 35px;
+    box-shadow: 0 15px 50px rgba(214, 51, 132, 0.08);
+    margin-left: 60px;
+    border: 1px solid var(--soft-pink);
+}
+
+/* Form field groups */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    background-color: #fafafa;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Highlight focused fields with the brand colour */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--deep-rose);
+    background: #fff;
+}
+
+/* Send button */
+.btn-send {
+    width: 100%;
+    background-color: var(--deep-rose);
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.btn-send:hover {
+    background-color: var(--dark);
+    transform: translateY(-3px);
+}
+
+/* MODAL BACKDROP */
+/* Semi-transparent overlay shown behind the success dialog */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    /* frosted-glass effect */
+    z-index: 3000;
+}
+
+/* SUCCESS MODAL */
+/* Shown after the contact form is submitted */
+.success-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 45px;
+    border-radius: 35px;
+    text-align: center;
+    z-index: 3001;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Success card content classes */
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: var(--deep-rose);
+}
+
+.success-heading {
+    font-family: 'Playfair Display', serif;
+    color: var(--deep-rose);
+    margin-bottom: 10px;
+}
+
+.success-message {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Pop-in scale animation */
+@keyframes pop {
+    from {
+        transform: translate(-50%, -50%) scale(0.7);
+        opacity: 0;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+
+    /* Stack vertically on tablet/mobile */
+    .contact-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 120px 5% 40px;
+    }
+
+    .contact-info h1 {
+        font-size: 2.8rem;
+    }
+
+    .detail {
+        justify-content: center;
+    }
+
+    .contact-form {
+        margin-left: 0;
+        margin-top: 40px;
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-info h1 {
+        font-size: 2rem;
+    }
+
+    .contact-form {
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .contact-container {
+        padding: 100px 5% 30px;
+    }
+}

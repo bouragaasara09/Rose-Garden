@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Garden - About Us</title> <!-- Favicon: inline SVG rose emoji -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>">
+    <!-- Shared site-wide styles (navbar, footer, CSS variables) -->
+    <link rel="stylesheet" href="../css/rose-style.css"> <!-- Page-specific styles for the About page -->
+    <link rel="stylesheet" href="../css/about.css">
+</head>
+
+<body> <!-- Navigation Bar -->
+    <nav class="navbar"> <!-- Logo: CSS flower + brand name, links back to home --> <a href="../index.html"
+            class="logo">
+            <div class="flower-logo">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div> ROSE GARDEN
+        </a> <!-- Main nav links; "About us" marked active on this page -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html" class="active">About us</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="flower_bar.html">Flower Bar</a></li>
+            <li><a href="panier.html">Cart</a></li>
+            <li><a href="flowers.html">Flowers</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul> <!-- Hamburger button: three spans = three lines, toggled by JS -->
+        <div class="burger" id="burger"> <span></span><span></span><span></span> </div>
+    </nav> <!-- Hero Banner --> <!-- Full-width image banner with the page title -->
+    <header class="about-hero">
+        <h1>Our <span>Story</span></h1>
+    </header> <!-- Main Content -->
+    <main> <!-- Brand story: text on the left, image on the right -->
+        <section class="about-content">
+            <div class="about-text">
+                <h2>Passion for Flowers</h2>
+                <p>"At Rose Garden, we believe that every bouquet is a masterpiece crafted by nature and refined by our
+                    passion. Our goal is to bring the timeless elegance of Marrakech's finest blooms into your home."
+                </p>
+                <p>Ensuring that every gift you send carries a message of love, freshness, and artistic perfection. We
+                    hand-pick every stem to ensure your moments are unforgettable.</p>
+            </div> <!-- Decorative image with a unique clipped border-radius shape -->
+            <div class="about-image">
+                <div class="image-box"> <img src="../images/6.jpeg" alt="Flowers"> </div>
+            </div>
+        </section> <!-- Value proposition: three cards explaining why customers choose us -->
+        <section class="values">
+            <h2>Why <span>Choose</span> Us?</h2>
+            <div class="values-grid"> <!-- Card 1: Freshness -->
+                <div class="value-card"> <i class="fa-solid fa-leaf"></i>
+                    <h3>Always Fresh</h3>
+                    <p>Our flowers are selected every morning to ensure maximum freshness and long-lasting beauty.</p>
+                </div> <!-- Card 2: Delivery speed -->
+                <div class="value-card"> <i class="fa-solid fa-truck-fast"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and careful delivery all over Marrakech in less than 2 hours to your doorstep.</p>
+                </div> <!-- Card 3: Custom orders -->
+                <div class="value-card"> <i class="fa-solid fa-palette"></i>
+                    <h3>Custom Design</h3>
+                    <p>Need a unique bouquet? Our professional florists create bespoke designs just for you.</p>
+                </div>
+            </div>
+        </section>
+    </main> <!-- Footer -->
+    <footer>
+        <div class="footer-container"> <!-- Brand blurb -->
+            <div class="footer-section">
+                <h3>Rose Garden</h3>
+                <p>Your favorite flower boutique in Marrakech. Premium quality and elegance in every bouquet.</p>
+            </div> <!-- Contact details -->
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Guéliz, Marrakech, Maroc</p>
+                <p><i class="fa-solid fa-phone"></i> +212 600 000 000</p>
+                <p><i class="fa-solid fa-envelope"></i> contact@rosegarden.ma</p>
+            </div> <!-- Opening hours -->
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon - Sat: 09:00 - 20:00</p>
+                <p>Sun: 09:00 - 13:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rose Garden Marrakech. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script> // --- Mobile nav toggle --- const burger = document.getElementById('burger'); const navLinks = document.getElementById('navLinks'); // Show/hide the slide-in menu and animate the burger icon to an X burger.addEventListener('click', () => { navLinks.classList.toggle('active'); burger.classList.toggle('active'); }); // Close the menu automatically when a nav link is clicked document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); burger.classList.remove('active'); }); }); </script>
+</body>
+
+</html>

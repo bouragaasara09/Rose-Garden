@@ -1,0 +1,410 @@
+/* panier.css Shopping cart page styles Applies to: pages/panier.html */
+/* Page background and navbar offset */
+body {
+    background-color: var(--bg-color);
+    padding-top: 130px;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* CART MAIN AREA */
+.cart-container {
+    padding: 0 8% 80px;
+    min-height: 70vh;
+}
+
+/* Page title */
+.page-intro {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--dark);
+}
+
+h1 span {
+    color: var(--deep-rose);
+}
+
+/* EMPTY CART STATE */
+/* Shown when localStorage has no items; hidden by JS when items exist */
+#empty-cart-msg {
+    display: none;
+    background: white;
+    padding: 60px;
+    border-radius: 25px;
+    text-align: center;
+    border: 2px dashed var(--soft-pink);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 0.8s ease;
+    will-change: opacity, transform;
+}
+
+.empty-cart-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: var(--deep-rose);
+}
+
+.empty-cart-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--deep-rose);
+}
+
+.empty-cart-text {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.empty-cart-link {
+    color: var(--deep-rose);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Wrapper for the table + summary box; shown when items exist */
+#cart-wrapper {
+    display: none;
+    animation: fadeInUp 0.8s ease;
+    will-change: opacity, transform;
+}
+
+/* CART TABLE */
+/* Horizontal scroll wrapper ensures the table never breaks on small screens */
+.table-responsive {
+    background: white;
+    border-radius: 25px;
+    overflow-x: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+table {
+    width: 100%;
+    min-width: 500px;
+    border-collapse: collapse;
+}
+
+th {
+    background: var(--soft-pink);
+    color: var(--deep-rose);
+    padding: 20px;
+    text-align: left;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 20px;
+    border-bottom: 1px solid #f5f5f5;
+    vertical-align: middle;
+}
+
+/* Quantity input field inside the table */
+.qty-input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Remove item button */
+.remove-btn {
+    color: #ff4d4d;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    color: var(--dark);
+    text-decoration: underline;
+}
+
+/* ORDER SUMMARY BOX */
+.summary-box {
+    background: white;
+    padding: 35px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 400px;
+    margin: 40px 0 0 auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--soft-pink);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Grand total row is larger and bold */
+.total-row {
+    border-top: 2px solid var(--soft-pink);
+    padding-top: 20px;
+    margin-top: 15px;
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: var(--deep-rose);
+}
+
+/* SHARED CHECKOUT BUTTON */
+.btn-checkout {
+    display: block;
+    width: 100%;
+    background: var(--deep-rose);
+    color: white;
+    text-align: center;
+    padding: 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 25px;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.btn-checkout:hover {
+    background: var(--dark);
+    transform: translateY(-3px);
+}
+
+/* Shared entrance animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* MODAL BACKDROP */
+/* Semi-transparent overlay displayed behind the order forms */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 3000;
+}
+
+/* ORDER CONFIRMED MODAL */
+.order-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 25px;
+    padding: 50px 40px;
+    text-align: center;
+    z-index: 3001;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: popIn 0.4s ease;
+}
+
+/* Pop-in entrance: rises from slightly below centre */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% + 30px));
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.order-icon {
+    font-size: 64px;
+    color: var(--deep-rose);
+    margin-bottom: 15px;
+}
+
+.order-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--deep-rose);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.order-msg {
+    color: #777;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.order-card .btn-checkout {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+/* ORDER INFO FORM MODAL */
+/* Collects the buyer's name, relation, and personal message before placing the order */
+.info-card {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 30px;
+    padding: 45px 40px;
+    z-index: 3001;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: popIn 0.4s ease;
+}
+
+.info-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    color: var(--dark);
+    margin-bottom: 4px;
+}
+
+.info-title span {
+    color: var(--deep-rose);
+}
+
+.info-subtitle {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+}
+
+/* Validation error banner inside the info modal */
+.info-error {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    color: #e53e3e;
+    background: #fff5f5;
+    border: 1px solid #feb2b2;
+    border-radius: 12px;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+}
+
+/* Form field groups inside the info modal */
+.info-group {
+    margin-bottom: 18px;
+}
+
+.info-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.info-group input,
+.info-group select,
+.info-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    background: #fafafa;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dark);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    box-sizing: border-box;
+}
+
+/* Highlight focused fields with the brand colour */
+.info-group input:focus,
+.info-group select:focus,
+.info-group textarea:focus {
+    border-color: var(--deep-rose);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(214, 51, 132, 0.1);
+}
+
+/* Action row: Cancel (left) + Place Order (right) buttons */
+.info-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-back {
+    flex: 1;
+    padding: 15px;
+    border-radius: 50px;
+    border: 2px solid var(--soft-pink);
+    background: white;
+    color: var(--deep-rose);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-back:hover {
+    background: var(--soft-pink);
+    border-color: var(--deep-rose);
+}
+
+/* Place Order button takes twice the width of Cancel */
+.btn-place {
+    flex: 2;
+    margin-top: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 968px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .cart-container {
+        padding: 0 5% 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .summary-box {
+        max-width: 100%;
+        margin: 40px 0 0;
+    }
+
+    th,
+    td {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+}

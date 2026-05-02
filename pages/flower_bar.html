@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Garden - Flower Bar</title> <!-- Favicon: inline SVG rose emoji -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>">
+    <!-- Shared site-wide styles -->
+    <link rel="stylesheet" href="../css/rose-style.css"> <!-- Page-specific styles for the Flower Bar layout -->
+    <link rel="stylesheet" href="../css/flower_bar.css">
+</head>
+
+<body> <!-- Custom Alert Modal --> <!-- Replaces browser alert(); shown for validation errors in the bouquet builder -->
+    <div class="modal-overlay" id="customAlert">
+        <div class="modal-card">
+            <h3 id="modalTitle">Oups !</h3>
+            <p id="modalMsg">Name your bouquet and add some flowers!</p> <button type="button" class="modal-btn"
+                onclick="closeModal()">D'ACCORD</button>
+        </div>
+    </div> <!-- Navigation Bar -->
+    <nav class="navbar"> <a href="../index.html" class="logo">
+            <div class="flower-logo">
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+            </div> ROSE GARDEN
+        </a> <!-- "Flower Bar" is marked active on this page -->
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="about.html">About us</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="flower_bar.html" class="active">Flower Bar</a></li>
+            <li><a href="panier.html">Cart</a></li>
+            <li><a href="flowers.html">Flowers</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="burger" id="burger"> <span></span> <span></span> <span></span> </div>
+    </nav> <!-- Page Header -->
+    <div class="page-header">
+        <h1>Flower <span>Bar</span></h1>
+        <p>Build your perfect bouquet, one flower at a time</p>
+    </div> <!-- Main Layout: flower grid (left) + bouquet sidebar (right) -->
+    <div class="main-container"> <!-- Flower cards are injected here by renderFlowers() -->
+        <div class="flower-grid" id="flowerGrid"></div> <!-- Sidebar: live preview of the current bouquet selection -->
+        <div class="sidebar">
+            <h2> My Bouquet</h2> <!-- Selection list updates whenever items are added via addToBouquet() -->
+            <div id="selection-list" class="selection-info">Your bouquet is currently empty...</div>
+            <hr class="sidebar-divider"> <!-- Running total price -->
+            <p><strong>Total: <span id="temp-total" class="total-amount">0</span> DH</strong></p>
+            <!-- User-defined name for the bouquet (required before adding to cart) --> <label
+                class="bouquet-label">Name of the bouquet :</label> <input type="text" id="bouquetName"
+                placeholder=" Ex:Sunset Bloom" class="bouquet-name-input">
+            <!-- Saves the bouquet to localStorage and redirects to the cart --> <button type="button" class="btn-order"
+                onclick="finalizeBouquet()">Add To Cart</button>
+        </div>
+    </div> <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Rose Garden</h3>
+                <p>Your favorite flower boutique in Marrakech. Premium quality and elegance in every bouquet.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Guéliz, Marrakech, Maroc</p>
+                <p><i class="fa-solid fa-phone"></i> +212 600 000 000</p>
+                <p><i class="fa-solid fa-envelope"></i> contact@rosegarden.ma</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hours</h3>
+                <p>Mon - Sat: 09:00 - 20:00</p>
+                <p>Sun: 09:00 - 13:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rose Garden Marrakech. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script> // --- Mobile nav toggle --- const burger = document.getElementById('burger'); const navLinks = document.getElementById('navLinks'); burger.addEventListener('click', () => { navLinks.classList.toggle('active'); burger.classList.toggle('active'); }); document.querySelectorAll('.nav-links a').forEach(link => { link.addEventListener('click', () => { navLinks.classList.remove('active'); burger.classList.remove('active'); }); }); // --- Custom alert helpers --- function showAlert(msg) { document.getElementById('modalMsg').innerText = msg; document.getElementById('customAlert').style.display = 'flex'; } function closeModal() { document.getElementById('customAlert').style.display = 'none'; } // --- Flower catalogue --- // Each entry defines the display name, unit price, and image path const flowerData = [ { name: "White Rose", price: 15, img: "../images/23.jpeg" }, { name: "Soft Peony", price: 25, img: "../images/24.jpeg" }, { name: "White Lily", price: 20, img: "../images/43.jpeg" }, { name: "Moon Orchid", price: 40, img: "../images/40.jpeg" }, { name: "White Daisy", price: 10, img: "../images/25.jpeg" }, { name: "Pink Hydrangea", price: 35, img: "../images/28.jpeg" }, { name: "Pink Carnation", price: 12, img: "../images/39.jpeg" }, { name: "Sweet Jasmine", price: 18, img: "../images/27.jpeg" }, { name: "White Anemone", price: 22, img: "../images/37.jpeg" }, { name: "Pink Ranunculus", price: 28, img: "../images/36.jpeg" }, { name: "Baby's Breath", price: 8, img: "../images/22.jpeg" }, { name: "Red Tulip", price: 15, img: "../images/41.jpeg" }, { name: "Pink Gerbera", price: 45, img: "../images/31.jpeg" }, { name: "Yellow Flower", price: 30, img: "../images/33.jpeg" }, { name: "Black Flower", price: 32, img: "../images/38.jpeg" }, { name: "Green Tulip", price: 18, img: "../images/32.jpeg" }, { name: "Yellow Tulip", price: 12, img: "../images/34.jpeg" }, { name: "White Dahlia", price: 24, img: "../images/42.jpeg" }, { name: "Bleu Flower", price: 38, img: "../images/29.jpeg" }, { name: "Lily Rose", price: 14, img: "../images/30.jpeg" } ]; // Tracks which flowers/quantities the user has added to their bouquet let currentSelection = []; // Render one card per flower into the grid function renderFlowers() { const grid = document.getElementById('flowerGrid'); grid.innerHTML = ""; flowerData.forEach((flower, index) => { grid.innerHTML += ` <div class="flower-card"> <img src="${flower.img}"> <h4>${flower.name}</h4> <p style="color:var(--deep-rose); font-weight:600;">${flower.price} DH</p> <!-- qty-input lets the user choose how many stems to add --> <input type="number" class="qty-input" id="qty-${index}" min="0" value="0"> <button class="btn-add-item" onclick="addToBouquet(${index})">Add</button> </div> `; }); } // Add the selected quantity of a flower to the bouquet selection array function addToBouquet(index) { const qtyInput = document.getElementById(`qty-${index}`); const qty = parseInt(qtyInput.value); if (qty <= 0) { showAlert("Please choose a quantity!"); return; } const flower = flowerData[index]; // Store the total price for this flower line (unit price × qty) currentSelection.push({ name: flower.name, qty: qty, price: flower.price * qty }); qtyInput.value = 0; // reset the input after adding updateSidebar(); } // Rebuild the sidebar list and recalculate the running total function updateSidebar() { const list = document.getElementById('selection-list'); const totalDisplay = document.getElementById('temp-total'); let total = 0; if (currentSelection.length === 0) { list.innerHTML = "Your bouquet is currently empty..."; totalDisplay.innerText = "0"; return; } list.innerHTML = currentSelection.map(f => { total += f.price; return `<div style="margin-bottom:5px;">• ${f.qty}x ${f.name}</div>`; }).join(''); totalDisplay.innerText = total; } // Save the custom bouquet as a single cart item and go to the cart function finalizeBouquet() { const nameInput = document.getElementById('bouquetName').value.trim(); if (!nameInput || currentSelection.length === 0) { showAlert("Name your bouquet and add some flowers!"); return; } // Sum all flower line prices to get the bouquet's total price const totalPrice = currentSelection.reduce((sum, f) => sum + f.price, 0); const itemToSave = { title: nameInput, price: totalPrice, quantity: 1 }; let cart = JSON.parse(localStorage.getItem('roseGardenCart')) || []; cart.push(itemToSave); localStorage.setItem('roseGardenCart', JSON.stringify(cart)); window.location.href = 'panier.html'; // redirect to the cart page } // Kick off by rendering all flower cards on page load renderFlowers(); </script>
+</body>
+
+</html>
